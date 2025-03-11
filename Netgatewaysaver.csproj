@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ManagedNativeWifi" Version="2.7.0" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
+﻿
+using System;
+using System.Linq;
 using System.Windows;
+using ManagedNativeWifi;
+using System.Collections.Generic;
 
 namespace Netgatewaysaver
 {
@@ -10,50 +12,48 @@ namespace Netgatewaysaver
         public MainWindow()
         {
             InitializeComponent();
-            LoadNetworkInterfaces();
+            LoadNetworkData();
         }
 
-
-        public class NetworkInterfaceInfo
+        public class AvailableNetworkPack
         {
-            public required string Name { get; set; }
-            public string OperationalStatus { get; set; }
-            public string Description { get; set; }
-            public long Speed { get; set; }
-            public string MAC { get; set; }
-            public bool IsReceiveOnly { get; set; }
-            public string Channel { get; set; }
+            public required string Ssid { get; set; }
+            public required string Description { get; set; }
+            public required string BSS { get; set; }
+            public required string BSSID { get; set; }
+            public required string Signalstrength { get; set; }
+            public required string Linkquality { get; set; }
+            public required string Frequency { get; set; }
+            public required string Largurabanda { get; set; }
+            public required string Channel { get; set; }
+
+
+
         }
 
-
-        private void LoadNetworkInterfaces()
+        private void LoadNetworkData()
         {
-            List<NetworkInterfaceInfo> networkInterfaces = new List<NetworkInterfaceInfo>();
-            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface ni in interfaces)
+            List<AvailableNetworkPack> networkPacks = new List<AvailableNetworkPack>();
+            var networks = NativeWifi.EnumerateBssNetworks();
+            foreach (var network in networks)
             {
-                networkInterfaces.Add(new NetworkInterfaceInfo
+                networkPacks.Add(new AvailableNetworkPack
                 {
-                    Name = ni.Name,
-                    OperationalStatus = ni.OperationalStatus.ToString(),
-                    Description = ni.Description,
-                    Speed = ni.Speed,
-                    MAC = ni.GetPhysicalAddress().ToString(),
-                    IsReceiveOnly = ni.IsReceiveOnly,
-                    Channel = GetChannel(ni)
+                    Ssid = network.Ssid.ToString(),
+                    Description = $"{{adaptador de rede : {network.Interface.Description} ({network.Interface.Id})" + Environment.NewLine,
+                   
+                    BSS= $" BSS: {network.BssType}" + Environment.NewLine,
+                    BSSID= $" BSSID: {network.Bssid}" + Environment.NewLine,
+                    Signalstrength= $" SignalStrength: {network.SignalStrength}" + Environment.NewLine,
+                    
+                    Linkquality= $" LinkQuality: {network.LinkQuality}" + Environment.NewLine,
+                    Frequency= $" Frequency: {network.Frequency} KHz" + Environment.NewLine,
+                    Largurabanda = $" largura de Banda: {network.Band} GHz" + Environment.NewLine,
+                    Channel= $" Channel: {network.Channel}" + Environment.NewLine,
+
                 });
             }
-
-            this.DataContext = networkInterfaces;
-        }
-
-        private static string GetChannel(NetworkInterface ni)
-        {
-            return "Channel Info";
+            this.DataContext = networkPacks;
         }
     }
-
-    
 }
-
-  
