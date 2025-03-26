@@ -2,7 +2,8 @@
 
 # Analisador de Redes Versão BETA
  
-![Captura de tela 2025-03-26 111724](https://github.com/user-attachments/assets/a9820b99-d724-4f6a-9486-901aee290878)
+![Captura de tela 2025-03-26 123844](https://github.com/user-attachments/assets/84ec08f3-bcfe-45f9-9894-5aa549bcb3ed)
+
 
 # ideia do projeto
 
