@@ -4,17 +4,17 @@
  
 ![Captura de tela 2025-03-26 111724](https://github.com/user-attachments/assets/a9820b99-d724-4f6a-9486-901aee290878)
 
-#ideia do projeto
+# ideia do projeto
 
  trazer interface das redes proximas ao usuário  além  de sua Propria rede para então poder criar estatisticas e realizar possiveis manutenções através  de um diagnostico
 
 
- #tecnologias usadas 
+ # Tecnologias usadas 
 
  Framework .NET Core 8.0 
  linguagem :C#
 
- #liBS
+ # libs
 
 NetworkinterfaceInfo;
 ManagedNativeWifi;
@@ -31,4 +31,18 @@ Live Charts;
             public required string Largurabanda { get; set; }
             public required string Channel { get; set; }
  SpeedTest;
-   calsse que 
+   calsse que armazena os dados de Estatísticas  e metricas da rede como Tranferencia de Dados por exemplo extraidos da Função Load SpeedTest() e os Armazena para visualização Grafica  
+public class SpeedTest
+{
+    public required string Download { get; set; }
+    public required string Upload { get; set; }
+    public required string Ping { get; set; }
+    public required string Jitter { get; set; }
+    public required string Server { get; set; }
+    public required string Ip { get; set; }
+    public required string Host { get; set; }
+    public required string Location { get; set; }
+}
+
+
+
