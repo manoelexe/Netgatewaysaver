@@ -47,7 +47,9 @@ public class SpeedTest
 
 # Funções
 
- LoadNEtworkDataAsync()
+ LoadNEtworkDataAsync():
+ é uma função privada e assíncrona.Ultilizando o awaitcom o metodo scannetworkAsync() da bliblioteca NativeWifi do Windows ,em um intervalo (TimeSpan()) de 10 segundos, ela escaneia as redes proximas ao usuário  e tem como response as
+ informações da interface de ada rede como o SSid, ,frequencia de sinal,Largura de Banda ,channel Etc. enquanto a variável  network, instância  NativeWifi.EnumerateBSsnetworks, criando um conjunto para armazenas temporariamente os dados da rede rescebidos logo é criada uma nova instancia da classe "AvailableNEtworksPacks " e é inteirada através  de um laço de repetição (foreach) com as redes e seus respectivos dados escaneados.
 
 
 
