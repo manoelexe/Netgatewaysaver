@@ -48,8 +48,13 @@ public class SpeedTest
 # Funções
 
  LoadNEtworkDataAsync():
- é uma função privada e assíncrona.Ultilizando o awaitcom o metodo scannetworkAsync() da bliblioteca NativeWifi do Windows ,em um intervalo (TimeSpan()) de 10 segundos, ela escaneia as redes proximas ao usuário  e tem como response as
+ É  uma função privada e assíncrona.Ultilizando o awaitcom o metodo scannetworkAsync() da bliblioteca NativeWifi do Windows ,em um intervalo (TimeSpan()) de 10 segundos, ela escaneia as redes proximas ao usuário  e tem como response as
  informações da interface de ada rede como o SSid, ,frequencia de sinal,Largura de Banda ,channel Etc. enquanto a variável  network, instância  NativeWifi.EnumerateBSsnetworks, criando um conjunto para armazenas temporariamente os dados da rede rescebidos logo é criada uma nova instancia da classe "AvailableNEtworksPacks " e é inteirada através  de um laço de repetição (foreach) com as redes e seus respectivos dados escaneados.
+
+
+LoadSpeedTest() ,GetNetworkStatistics():
+
+São duas funções complementares a Função GetNetworkStatistics() è uma função estática  que cria uma instância em formato de Array  da classe NetworkInterface sobre o Namespace NetworkInfo , ultilizando o metododo GetnetrokInterfaces() que tem como Resposta os Dados do Adptador de rede, logo em seguida aatravés de uma estrutura de repetição os dados são interados sobre o metodo de status operacionais (operationalstatus) para calcular as taxas de tranferencia e Ping que passam pela comutação da rede e seu trafego. o Numero de bytes Enviados e rescebidos São armazernados nas Variáveis  Bytessent E bytesReceived.logo Após  tudo isso a Função LoadSpeedTest Trás  uma nova Intancia da classe SpeedTest e por fim armazena os dados rescebidos da função GetNetworkStatistics() e gera os Dados Para estatísticas 
 
 
 
